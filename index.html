@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Idea Book</title>
+
+		<link href="css/main.css" rel="stylesheet" /></li>
+		<link href="css/bootstrap.min.css" rel="stylesheet" /></li>
+		<script src="js/respond.js"></script>
+	
+
+	</head>
+
+	<body>
+
+		<!-- header -->
+		<div class ="navbar navbar-inverse navbar-static-top">
+			<div class="container">
+				<a href="#" class="navbar-brand">IDEA BOOK</a>
+				<button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+					<span class = "icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse navHeaderCollapse">
+
+					<ul class = "nav navbar-nav navbar-right">
+						<li><a href="{{ url }}"> {{ url_linktext }} </a> {{user.nickname}}</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- end --> 		
+		
+		
+		{% if user %}
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<h3 class="text-center">Post a new idea</h3>
+				
+				<!-- Idea form -->
+					<form action="/new" method="post" class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="shortDescription">Summary</label>
+									<input type="text" name="shortDescription" id="shortDescription" class="form-control" />
+									
+								</div>
+
+								<div class="form-group">
+									<label for="dueDate">Due Date</label>
+									<input type="dueDate" name="dueDate" id="dueDate" class="form-control" />
+									
+								</div>
+
+								<div class="form-group" >
+									<label for="longDescription" >Description</label>
+									<textarea name="longDescription" rows="3" id="longDescription" class="form-control"></textarea>
+							      	
+							     </div>
+
+						    	<div class="form-group" >
+							    	<label for="url" >URL</label>
+							    	<input type="text" name="url" id="url" class="form-control"/>
+							      	
+							    </div>
+
+						    	<button class="btn btn-primary" type="submit">Create</button>
+						    
+					</form>
+			</div>
+			</div>
+			</div><!-- container end -->
+			<br />
+		<!-- End -->
+			{% else %}
+			<div class = "container text-center">
+				<div class="jumbotron">
+
+					<h2>Want to post a new idea?</h2>
+					
+				</div>
+				<p>Login with your <b>Intellisoftplus Google Account</b> to create and review Ideas.</p>
+			</div>
+			{% endif %}
+			<hr />
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						{# check if we have any ideas posted, only in this case render the table #}
+
+						{% if numberideas %}
+
+						You have a total number of {{numberideas}} Ideas
+						<div id="content">
+						<table>
+							<tr>
+								<th>Short Description</th>
+								<th>Due Date</th>
+								<th>Long Descrition</th>
+								<th>URL</th>
+								<th>Created</th>
+								<th>Updated</th>
+								<th>Done</th>
+								<th>Send email reminder</th>
+							</tr>
+							{% for idea in ideas %}
+							<tr>
+								<td>{{idea.shortDes}}</td>
+								<td>{{idead.duedate}}</td>
+								<td>{{idea.longDes}}</td>
+								<td>
+									{% if idea.url %}
+										<a href="{{idea.url}}"> {{idea.url}}</a>
+									{% endif %}
+
+								</td>
+								<td>{{idea.created|date:"d.m.Y"}}</td>
+								<td>{{idea.updated|date:"d.m.Y"}}</td>
+								<td><a class="done" href="/done?id={{idea.key.id}}">Done</a></td>
+								<td><a class="email" href="/email?id={{idea.key.id}}">Email</a></td>
+							</tr>
+							{% endfor %}
+						</table>
+					</div>
+						{% endif %}
+					</div>
+				</div><!--row div tag -->
+
+			<hr />
+		</div>
+	<!-- javascript -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    	<script src="js/bootstrap.min.js"></script>
+	<!-- End -->
+
+	<!--footer -->
+	<br />
+	<br />
+	<br />
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<p class="navbar-text pull-left">Powered By Intellisoftplus</p>
+
+		</div>
+
+	</div>
+	<!-- end -->
+	</body>
+
+</html>
