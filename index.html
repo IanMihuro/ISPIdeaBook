@@ -54,11 +54,25 @@
 									
 								</div>
 
-								<div class="form-group">
+
+
+								<div class="form-group" data-datepicker="true">
 									<label for="dueDate">Due Date</label>
-									<input type="dueDate" name="dueDate" id="dueDate" class="form-control" />
-									
-								</div>
+					                <div class='input-group date' id='dueDate'>
+					                    <input type='text' class="form-control" />
+					                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+					                    </span>
+					                </div>
+					            </div>
+
+					            <script type="text/javascript">
+						            $(function () {
+						                $('#dueDate').datetimepicker({
+						                	 format: "dd/mm/yyyy"
+						                });
+						            });
+						        </script>					
+								
 
 								<div class="form-group" >
 									<label for="longDescription" >Description</label>
@@ -101,7 +115,8 @@
 
 						You have a total number of {{numberideas}} Ideas
 						<div id="content">
-						<table>
+						<table class="table table-striped">
+							 <thead>
 							<tr>
 								<th>Short Description</th>
 								<th>Due Date</th>
@@ -110,8 +125,11 @@
 								<th>Created</th>
 								<th>Updated</th>
 								<th>Done</th>
-								<th>Send email reminder</th>
+								<th>Send Email</th>
+								
 							</tr>
+							</thead>
+							<tbody>
 							{% for idea in ideas %}
 							<tr>
 								<td>{{idea.shortDes}}</td>
@@ -129,6 +147,7 @@
 								<td><a class="email" href="/email?id={{idea.key.id}}">Email</a></td>
 							</tr>
 							{% endfor %}
+							</tbody>
 						</table>
 					</div>
 						{% endif %}
@@ -140,6 +159,7 @@
 	<!-- javascript -->
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
     	<script src="js/bootstrap.min.js"></script>
+    	
 	<!-- End -->
 
 	<!--footer -->
@@ -154,6 +174,7 @@
 
 	</div>
 	<!-- end -->
+	
 	</body>
 
 </html>

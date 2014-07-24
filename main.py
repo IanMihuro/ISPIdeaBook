@@ -104,6 +104,10 @@ class IdeaBookModel(db.Model):
 	finished = db.BooleanProperty()
 
 	#GitHub test
+	#GitHub test 2
+	#GitHub test 3
+	#gitHub test 4
+	#gitHub test 5
 
 #Register URL the responssible Classes
 app = webapp2.WSGIApplication([
@@ -112,3 +116,4 @@ app = webapp2.WSGIApplication([
     ('/done', DeleteIdea),
     ('/email',EmailIdea)
 ], debug=True)
+

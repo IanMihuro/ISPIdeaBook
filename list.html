@@ -16,6 +16,7 @@
 	</head>
 
 	<body>
+		hi
 
 		<!-- header -->
 		<div class ="navbar navbar-inverse navbar-static-top">
@@ -38,6 +39,7 @@
 
 
 		<!-- end --> 
+<br />
 <div class="container">
 		<div class="row">
 			<div class="col-md-2"></div>
@@ -49,7 +51,8 @@
 
 				You have a total number of {{numberideas}} Ideas
 
-				<table>
+				<table class="table table-striped">
+				<thead>	
 					<tr>
 						<th>Short Description</th>
 						<th>Due Date</th>
@@ -59,7 +62,10 @@
 						<th>Updated</th>
 						<th>Done</th>
 						<th>Send email reminder</th>
+						
 					</tr>
+				</thead>
+				<tbody>
 					{% for idea in ideas %}
 					<tr>
 						<td>{{idea.shortDes}}</td>
@@ -77,6 +83,7 @@
 						<td><a class="email" href="/email?id={{idea.key.id}}">Email</a></td>
 					</tr>
 					{% endfor %}
+				</tbody>
 				</table>
 				{% endif %}
 			</div>
