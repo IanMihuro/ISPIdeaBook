@@ -103,6 +103,8 @@ class IdeaBookModel(db.Model):
 	dueDate = db.StringProperty(required=True)
 	finished = db.BooleanProperty()
 
+	#GitHub test
+
 #Register URL the responssible Classes
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
